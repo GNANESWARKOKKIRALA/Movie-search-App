@@ -37,6 +37,8 @@ function App() {
       
       {loading ? (
         <div className="loading">Loading movies...</div>
+      ) : !query.trim() ? (
+        <div className="no-results">Please search for a movie to get started.</div>
       ) : !error ? (
         <>
           <MovieList movies={movies} />

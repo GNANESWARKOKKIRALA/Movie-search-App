@@ -4,7 +4,7 @@ import { fetchMovies } from '../services/api';
 
 export const useMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [query, setQuery] = useState('Jurassic Park');
+  const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -15,6 +15,11 @@ export const useMovies = () => {
 
   useEffect(() => {
     const loadMovies = async () => {
+      if (!query.trim()) {
+        setMovies([]);
+        return;
+      }
+      
       try {
         setLoading(true);
         setError(null);
